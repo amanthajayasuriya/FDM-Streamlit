@@ -3,25 +3,27 @@ from gettext import install
 import numpy as np
 import pickle
 import pandas as pd
-#from flasgger import Swagger
+
 import streamlit as st 
 import sklearn
 import time
 
 from PIL import Image
 
-#app=Flask(__name__)
-#Swagger(app)
+
+
+st.set_page_config(
+    page_title="FakeCatcher",
+    page_icon='🕸️'
+)
 
 pickle_in = open("fake-account-classifier.sav","rb")
 classifier=pickle.load(pickle_in)
 
-#@app.route('/')
-def welcome():
-    return "Welcome All"
 
 
-#@app.route('/predict',methods=["Get"])
+
+
 def predict_note_authentication(Num_posts,Num_following,Num_followers,Biography_length,Picture_availability,Link_availability,Average_caption_length,Likes,Comments,Hashtag_count,Average_Post_interval):
     
     prediction=classifier.predict([[Num_posts,Num_following,Num_followers,Biography_length,Picture_availability,Link_availability,Average_caption_length,Likes,Comments,Hashtag_count,Average_Post_interval]])
@@ -61,23 +63,23 @@ def main():
         result=predict_note_authentication(Num_posts,Num_following,Num_followers,Biography_length,Picture_availability,Link_availability,Average_caption_length,Likes,Comments,Hashtag_count,Average_Post_interval)
 
         if result==0:
-          st.success('Real')
+          st.success('✅')
         else:
-          st.success('Fake')
+          st.success('❌')
     html_temp = """
     <br><br>
     """
     st.markdown(html_temp,unsafe_allow_html=True)        
     #st.success('The output is {}'.format(result))
   with st.spinner(text='In progress'):
-    time.sleep(2)
+    time.sleep(1)
   result=predict_note_authentication(Num_posts,Num_following,Num_followers,Biography_length,Picture_availability,Link_availability,Average_caption_length,Likes,Comments,Hashtag_count,Average_Post_interval)
-  st.subheader("Predicted result for account:")
+  st.subheader("Predicted result for Account:")
   if result==0:
     
-    st.success('Real')
+    st.success('Real Account! Have a Fun :😉:')
   else:
-    st.success('Fake')
+    st.success('Fake Account!😟  Stay Away from this person')
 
 
 #st.title("Instagram Fake Account Athenticator")        
