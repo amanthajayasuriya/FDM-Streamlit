@@ -3,26 +3,18 @@ from gettext import install
 import numpy as np
 import pickle
 import pandas as pd
-
+#import plotly.figure_factory as ff
 import streamlit as st 
 import sklearn
 import time
-
 from PIL import Image
-
-
 
 st.set_page_config(
     page_title="FakeCatcher",
     page_icon='🕸️'
 )
-
 pickle_in = open("fake-account-classifier.sav","rb")
 classifier=pickle.load(pickle_in)
-
-
-
-
 
 def predict_note_authentication(Num_posts,Num_following,Num_followers,Biography_length,Picture_availability,Link_availability,Average_caption_length,Likes,Comments,Hashtag_count,Average_Post_interval):
     
@@ -30,21 +22,17 @@ def predict_note_authentication(Num_posts,Num_following,Num_followers,Biography_
     print(prediction)
     return prediction
 
-
-  
-
-
 def main():
   with st.sidebar:
     html_temp = """
-    <div style="background-color:#bc2a8d;padding:10px">
-    <h2 style="color:white;text-align:center;">Streamlit Fake Account Athenticator ML App </h2>
+    <div style="background-image: linear-gradient(to top, #f77062 0%, #fe5196 100%);">
+    <h2 style="color:white;text-align:center;">Instagram Fake Account Athenticator ML App </h2>
     </div>
     <br><br>
     """
     st.markdown(html_temp,unsafe_allow_html=True)
-    
-    Num_posts = st.number_input("Number Of Posts")
+    st.warning("Please Input Integer Values!!!")
+    Num_posts = st.number_input(label="Number Of Posts")
     Num_following = st.number_input("Number Of Following")
     Num_followers = st.number_input("Number Of Followers")
     Biography_length = st.number_input("Biography Length")
@@ -96,8 +84,8 @@ chart_data = pd.DataFrame(
 st.bar_chart(chart_data)
 
 chart_data = pd.DataFrame(
-    np.random.randn(20, 3),
-    columns=['Num_posts', 'Average_Post_interval', 'result'])
+    np.random.randn(20, 2),
+    columns=['Num_posts', 'result'])
 
 st.line_chart(chart_data)
 
