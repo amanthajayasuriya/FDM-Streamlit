@@ -11,7 +11,7 @@ import time
 
 st.set_page_config(
     page_title="FakeCatcher",
-    page_icon='🕸️'
+    page_icon='1_logo.png'
 )
 pickle_in = open("fake-account-classifier.sav","rb")
 classifier=pickle.load(pickle_in)

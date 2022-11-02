@@ -2,7 +2,7 @@ import streamlit as st
 
 st.set_page_config(
     page_title="FakeCatcher",
-    page_icon='🕸️'
+    page_icon='1_logo.png'
 )
 
 st.title("About 🕵️‍♂️")
