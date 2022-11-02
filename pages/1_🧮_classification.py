@@ -7,7 +7,7 @@ import pandas as pd
 import streamlit as st 
 import sklearn
 import time
-from PIL import Image
+
 
 st.set_page_config(
     page_title="FakeCatcher",
